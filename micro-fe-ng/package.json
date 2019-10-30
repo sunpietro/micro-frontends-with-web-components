@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "npm run build && serve -l 5001 dist/micro-fe-ng",
+    "start": "npm run build && npx serve -l 5001 dist/micro-fe-ng",
     "build": "ng build --prod --output-hashing none --single-bundle true",
     "test": "ng test",
     "lint": "ng lint",

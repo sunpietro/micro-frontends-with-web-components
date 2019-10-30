@@ -6,7 +6,7 @@
     "react-scripts": "3.0.0"
   },
   "scripts": {
-    "start": "npm run build && serve -l 5002 dist",
+    "start": "npm run build && npx serve -l 5002 dist",
     "build": "webpack --mode development"
   },
   "eslintConfig": {
