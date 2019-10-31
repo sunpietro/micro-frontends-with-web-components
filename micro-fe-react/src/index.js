@@ -2,7 +2,7 @@ import * as React from 'react';
 import { render, unmountComponentAtNode } from 'react-dom';
 import htmlToReact from 'html-to-react';
 
-import { ExampleComponent } from './ExampleComponent.js';
+import { ExampleComponent } from './ExampleComponent';
 
 class ReactElement extends HTMLElement {
     constructor() {
