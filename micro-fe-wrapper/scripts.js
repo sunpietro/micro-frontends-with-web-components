@@ -1,7 +1,11 @@
 (function() {
     const msgContainer = document.getElementById('notifier');
+    const helloEvent = (who) => logMessage(`Hello from ${who} app`);
+    const logMessage = (msg) => {
+        msgContainer.innerHTML = ` <h3 slot="title">The output</h3><p>${msg}</p>`;
+    };
 
-    window.tellComponents = () => {
+    window.initApps = () => {
         const name = document.getElementById('yourName').value;
         const reactApp = document.getElementById('react-app');
         const angularApp = document.getElementById('ng-app');
@@ -14,13 +18,5 @@
         angularApp.addEventListener('helloEvt', (e) => helloEvent('Angular'));
 
         logMessage(`The name ${name} has been passed to micro frontend apps`);
-    };
-
-    const helloEvent = (who) => {
-        logMessage(`Hello from ${who} app`);
-    };
-
-    const logMessage = (msg) => {
-        msgContainer.innerHTML = ` <h3 slot="title">The output</h3><p>${msg}</p>`;
     };
 })();
