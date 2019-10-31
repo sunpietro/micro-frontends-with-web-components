@@ -28,9 +28,12 @@ class ReactElement extends HTMLElement {
     }
 
     mount() {
+        const propTypes = ExampleComponent.propTypes
+            ? ExampleComponent.propTypes
+            : {};
         const events = {};
         const props = {
-            ...this.getProps(this.attributes),
+            ...this.getProps(this.attributes, propTypes),
             ...this.getEvents(events),
             children: this.parseHtmlToReact(this.innerHTML),
         };
@@ -45,10 +48,10 @@ class ReactElement extends HTMLElement {
         return html && new htmlToReact.Parser().parse(html);
     }
 
-    getProps(attributes) {
+    getProps(attributes, propTypes) {
         return [...attributes]
             .filter((attr) => attr.name !== 'style')
-            .map((attr) => this.convert(attr.name, attr.value))
+            .map((attr) => this.convert(propTypes, attr.name, attr.value))
             .reduce(
                 (props, prop) => ({ ...props, [prop.name]: prop.value }),
                 {}
@@ -68,20 +71,23 @@ class ReactElement extends HTMLElement {
             );
     }
 
-    convert(attrName, attrValue) {
+    convert(propTypes, attrName, attrValue) {
+        const propName = Object.keys(propTypes).find(
+            (key) => key.toLowerCase() === attrName
+        );
         let value = attrValue;
 
-        if (attrValue === 'true' || attrValue === 'false') {
+        if (attrValue === 'true' || attrValue === 'false')
             value = attrValue === 'true';
-        } else if (!isNaN(attrValue) && attrValue !== '') {
+        else if (!isNaN(attrValue) && attrValue !== '') {
             value = +attrValue;
         } else if (/^{.*}/.exec(attrValue)) {
             value = JSON.parse(attrValue);
         }
 
         return {
-            name: attrName,
-            value,
+            name: propName ? propName : attrName,
+            value: value,
         };
     }
 }

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 
 const ExampleComponent = ({ name = 'Piotr', onHelloEvt }) => {
     return (
@@ -17,6 +18,11 @@ const ExampleComponent = ({ name = 'Piotr', onHelloEvt }) => {
             </button>
         </div>
     );
+};
+
+ExampleComponent.propTypes = {
+    name: PropTypes.string,
+    onHelloEvt: PropTypes.func,
 };
 
 export { ExampleComponent };
