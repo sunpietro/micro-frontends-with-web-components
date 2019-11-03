@@ -11,8 +11,8 @@
         const angularApp = document.getElementById('ng-app');
 
         reactApp.setAttribute('name', name);
-        reactApp.setAttribute('onHelloEvt', 'onHelloEvt');
-        reactApp.addEventListener('onHelloEvt', (e) => helloEvent('React'));
+        reactApp.setAttribute('onHelloEvt', 'helloEvt');
+        reactApp.addEventListener('helloEvt', (e) => helloEvent('React'));
 
         angularApp.setAttribute('name', name);
         angularApp.addEventListener('helloEvt', (e) => helloEvent('Angular'));
